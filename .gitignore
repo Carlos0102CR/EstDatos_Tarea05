@@ -329,3 +329,5 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 .DS_Store
+EstDatos_Tarea05/Console_Tarea05.csproj
+EstDatos_Tarea05/EstDatos_Tarea05.sln
