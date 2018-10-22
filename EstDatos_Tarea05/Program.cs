@@ -1,14 +1,15 @@
 ﻿using System;
+using Trees_Library.Gestor;
 
 namespace ArbolAVL
 {
     public class Program
     {
-        private static Gestor gestor;
+        private static Gestor_AVL gestor;
 
         public static void Main(string[] args)
         {
-            gestor = new Gestor();
+            gestor = new Gestor_AVL();
 
             bool salir = false;
             do

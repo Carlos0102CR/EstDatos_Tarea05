@@ -44,6 +44,7 @@
     <Compile Include="AVL\Arbol_AVL.cs" />
     <Compile Include="B+\Arbol_BMas.cs" />
     <Compile Include="B\Arbol_B.cs" />
+    <Compile Include="Gestor\Gestor.cs" />
     <Compile Include="Node\Enum\Color.cs" />
     <Compile Include="Node\Nodo.cs" />
     <Compile Include="Node\Nodo_Rojo_Negro.cs" />
