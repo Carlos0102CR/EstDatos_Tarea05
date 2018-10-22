@@ -44,10 +44,11 @@
     <Compile Include="AVL\Arbol_AVL.cs" />
     <Compile Include="B+\Arbol_BMas.cs" />
     <Compile Include="B\Arbol_B.cs" />
+    <Compile Include="Node\Enum\Color.cs" />
     <Compile Include="Node\Nodo.cs" />
+    <Compile Include="Node\Nodo_Rojo_Negro.cs" />
     <Compile Include="Rojo-Negro\Arbol_Rojo_Negro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,10 +3,387 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ArbolAVL;
 
 namespace Trees_Library
 {
     public class Arbol_Rojo_Negro
     {
+        private Nodo_Rojo_Negro raiz;
+        
+        public Arbol_Rojo_Negro() { }
+        
+        private void RotacionIzq(Nodo_Rojo_Negro X)
+        {
+            Nodo_Rojo_Negro Y = X.derecho; // set Y
+            X.derecho = Y.izquierdo;//turn Y's left subtree into X's right subtree
+            if (Y.izquierdo != null)
+            {
+                Y.izquierdo.padre = X;
+            }
+            if (Y != null)
+            {
+                Y.padre = X.padre;//link X's parent to Y
+            }
+            if (X.padre == null)
+            {
+                raiz = Y;
+            }
+            if (X == X.padre.izquierdo)
+            {
+                X.padre.izquierdo = Y;
+            }
+            else
+            {
+                X.padre.derecho = Y;
+            }
+            Y.izquierdo = X; //put X on Y's left
+            if (X != null)
+            {
+                X.padre = Y;
+            }
+ 
+        }
+        private void RotacionDer(Nodo_Rojo_Negro Y)
+        {
+            Nodo_Rojo_Negro X = Y.izquierdo;
+            Y.izquierdo = X.derecho;
+            if (X.derecho != null)
+            {
+                X.derecho.padre = Y;
+            }
+            if (X != null)
+            {
+                X.padre = Y.padre;
+            }
+            if (Y.padre == null)
+            {
+                raiz = X;
+            }
+            if (Y == Y.padre.derecho)
+            {
+                 Y.padre.derecho = X;
+            }
+            if(Y == Y.padre.izquierdo)
+            {
+                 Y.padre.izquierdo = X;
+            }
+ 
+            X.derecho = Y;
+            if (Y != null)
+            {
+                Y.padre = X;
+            }
+        }
+        
+        public void ImprimirArbol()
+        {
+            if (raiz == null)
+            {
+                Console.WriteLine("Nothing in the tree!");
+                return;
+            }
+            if (raiz != null)
+            {
+                ImprimirInOrden(raiz);
+            }
+        }
+        
+        public Nodo_Rojo_Negro Buscar(int key)
+        {
+            bool isEncontrado = false;
+            Nodo_Rojo_Negro temp = raiz;
+            Nodo_Rojo_Negro item = null;
+            while (!isEncontrado)
+            {
+                if (temp == null)
+                {
+                    break;
+                }
+                if (key < temp.dato)
+                {
+                    temp = temp.izquierdo;
+                }
+                if (key > temp.dato)
+                {
+                    temp = temp.derecho;
+                }
+                if (key == temp.dato)
+                {
+                    isEncontrado = true;
+                    item = temp;
+                }
+            }
+            if (isEncontrado)
+            {
+                Console.WriteLine("{0} was found", key);
+                return temp;
+            }
+            else
+            {
+                Console.WriteLine("{0} not found", key);
+                return null;
+            }
+        }
+        
+        public void Insertar(int item)
+        {
+            Nodo_Rojo_Negro nuevoItem = new Nodo_Rojo_Negro(item);
+            if (raiz == null)
+            {
+                raiz = nuevoItem;
+                raiz.color = Color.Negro;
+                return;
+            }
+            Nodo_Rojo_Negro Y = null;
+            Nodo_Rojo_Negro X = raiz;
+            while (X != null)
+            {
+                Y = X;
+                if (nuevoItem.dato < X.dato)
+                {
+                    X = X.izquierdo;
+                }
+                else
+                {
+                    X = X.derecho;
+                }
+            }
+            nuevoItem.padre = Y;
+            if (Y == null)
+            {
+                raiz = nuevoItem;
+            }
+            else if (nuevoItem.dato < Y.dato)
+            {
+                Y.izquierdo = nuevoItem;
+            }
+            else
+            {
+                Y.derecho = nuevoItem;
+            }
+            nuevoItem.izquierdo = null;
+            nuevoItem.derecho = null;
+            nuevoItem.color = Color.Rojo;
+            ArreglarInsercion(nuevoItem);
+        }
+        private void ImprimirInOrden(Nodo_Rojo_Negro act)
+        {
+            if (act != null)
+            {
+                ImprimirInOrden(act.izquierdo);
+                Console.Write("({0}) ", act.dato);
+                ImprimirInOrden(act.derecho);
+            }
+        }
+        private void ArreglarInsercion(Nodo_Rojo_Negro item)
+        {
+            while (item != raiz && item.padre.color == Color.Rojo)
+            {
+                if (item.padre == item.padre.padre.izquierdo)
+                {
+                    Nodo_Rojo_Negro Y = item.padre.padre.derecho;
+                    if (Y != null && Y.color == Color.Rojo)//Case 1: "tio" es rojo
+                    {
+                        item.padre.color = Color.Negro;
+                        Y.color = Color.Negro;
+                        item.padre.padre.color = Color.Rojo;
+                        item = item.padre.padre;
+                    }
+                    else //Case 2: es negro
+                    {
+                        if (item == item.padre.derecho)
+                        {
+                            item = item.padre;
+                            RotacionIzq(item);
+                        }
+                        //Case 3: cambiar color y rotar
+                    item.padre.color = Color.Negro;
+                    item.padre.padre.color = Color.Rojo;
+                    RotacionDer(item.padre.padre);
+                    }
+ 
+                }
+                else
+                {
+                    //lo mismo de arriba pero a la inversa
+                    Nodo_Rojo_Negro X = null;
+ 
+                    X = item.padre.padre.izquierdo;
+                    if (X != null && X.color == Color.Negro)//Case 1
+                    {
+                         item.padre.color = Color.Rojo;
+                         X.color = Color.Rojo;
+                         item.padre.padre.color = Color.Negro;
+                         item = item.padre.padre;
+                    }
+                    else //Case 2
+                    {
+                        if (item == item.padre.izquierdo)
+                        {
+                            item = item.padre;
+                            RotacionDer(item);
+                        }
+                        //Case 3
+                    item.padre.color = Color.Negro;
+                    item.padre.padre.color = Color.Rojo;
+                    RotacionIzq(item.padre.padre);
+ 
+                    }
+ 
+                }
+                raiz.color = Color.Negro;//cambiar el color de la raiz a negro
+            }
+        }
+        
+        public void Borrar(int llave)
+        {
+            
+            Nodo_Rojo_Negro item = Buscar(llave);
+            Nodo_Rojo_Negro X = null;
+            Nodo_Rojo_Negro Y = null;
+ 
+            if (item == null)
+            {
+                Console.WriteLine("Nothing to delete!");
+                return;
+            }
+            if (item.izquierdo == null || item.derecho == null)
+            {
+                Y = item;
+            }
+            else
+            {
+                Y = SucesorArbol(item);
+            }
+            if (Y.izquierdo != null)
+            {
+                X = Y.izquierdo;
+            }
+            else
+            {
+                X = Y.derecho;
+            }
+            if (X != null)
+            {
+                X.padre = Y;
+            }
+            if (Y.padre == null)
+            {
+                raiz = X;
+            }
+            else if (Y == Y.padre.izquierdo)
+            {
+                Y.padre.izquierdo = X;
+            }
+            else
+            {
+                Y.padre.izquierdo = X;
+            }
+            if (Y != item)
+            {
+                item.dato = Y.dato;
+            }
+            if (Y.color == Color.Negro)
+            {
+                ArreglarBorrado(X);
+            }
+ 
+        }
+        
+        private void ArreglarBorrado(Nodo_Rojo_Negro X)
+        {
+ 
+            while (X!= null && X != raiz && X.color == Color.Negro)
+            {
+                if (X == X.padre.izquierdo)
+                {
+                    Nodo_Rojo_Negro W = X.padre.derecho;
+                    if (W.color == Color.Rojo)
+                    {
+                        W.color = Color.Negro; //case 1
+                        X.padre.color = Color.Rojo; //case 1
+                        RotacionIzq(X.padre); //case 1
+                        W = X.padre.derecho; //case 1
+                    }
+                    if (W.izquierdo.color == Color.Negro && W.derecho.color == Color.Negro)
+                    {
+                        W.color = Color.Rojo; //case 2
+                        X = X.padre; //case 2
+                    }
+                    else if (W.derecho.color == Color.Negro)
+                    {
+                        W.izquierdo.color = Color.Negro; //case 3
+                        W.color = Color.Rojo; //case 3
+                        RotacionDer(W); //case 3
+                        W = X.padre.derecho; //case 3
+                    }
+                    W.color = X.padre.color; //case 4
+                    X.padre.color = Color.Negro; //case 4
+                    W.derecho.color = Color.Negro; //case 4
+                    RotacionIzq(X.padre); //case 4
+                    X = raiz; //case 4
+                }
+                else
+                {
+                    Nodo_Rojo_Negro W = X.padre.izquierdo;
+                    if (W.color == Color.Rojo)
+                    {
+                        W.color = Color.Negro;
+                        X.padre.color = Color.Rojo;
+                        RotacionDer(X.padre);
+                        W = X.padre.izquierdo;
+                    }
+                    if (W.derecho.color == Color.Negro && W.izquierdo.color == Color.Negro)
+                    {
+                        W.color = Color.Negro;
+                        X = X.padre;
+                    }
+                    else if (W.izquierdo.color == Color.Negro)
+                    {
+                        W.derecho.color = Color.Negro;
+                        W.color = Color.Rojo;
+                        RotacionIzq(W);
+                        W = X.padre.izquierdo;
+                    }
+                    W.color = X.padre.color;
+                    X.padre.color = Color.Negro;
+                    W.izquierdo.color = Color.Negro;
+                    RotacionDer(X.padre);
+                    X = raiz;
+                }
+            }
+            if(X != null)
+            X.color = Color.Negro;
+        }
+        private Nodo_Rojo_Negro Minimo(Nodo_Rojo_Negro X)
+        {
+            while (X.izquierdo.izquierdo != null)
+            {
+                X = X.izquierdo;
+            }
+            if (X.izquierdo.derecho != null)
+            {
+                X = X.izquierdo.derecho;
+            }
+            return X;
+        }
+        private Nodo_Rojo_Negro SucesorArbol(Nodo_Rojo_Negro X)
+        {
+            if (X.izquierdo != null)
+            {
+                return Minimo(X);
+            }
+            else
+            {
+                Nodo_Rojo_Negro Y = X.padre;
+                while (Y != null && X == Y.derecho)
+                {
+                    X = Y;
+                    Y = Y.padre;
+                }
+                return Y;
+            }
+        }
     }
 }
