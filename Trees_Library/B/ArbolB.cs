@@ -9,7 +9,7 @@ namespace Trees_Library.B
   public  class ArbolB
     {
         private int n;
-        private int m;
+        private int m;//esto es orden
         private int m1;
         private Pagina raiz;
 
@@ -718,6 +718,10 @@ namespace Trees_Library.B
             int i = 0;
             while (i <= r.getCont())
             {
+                //if (r.getApuntadores()[i]==null)
+                //{
+                //  Pagina
+                //}
                 msg += r.ToString() + "  pagina = " + i + "   ES =" + r.getApuntadores()[i].ToString() + "\n";
                 if (!this.esHoja(r.getApuntadores()[i]))
                     msg += this.imprime(r.getApuntadores()[i], msg);

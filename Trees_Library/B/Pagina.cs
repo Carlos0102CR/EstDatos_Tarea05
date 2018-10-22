@@ -11,7 +11,7 @@ namespace Trees_Library.B
 
         private int ordenArbol;
         private int MaximoLlaves;
-        private int MaximoApuntadores;
+        private int MinimoApuntadores;
 
         /**
          * numero de llaves de pagina
@@ -28,17 +28,16 @@ namespace Trees_Library.B
          */
         private Pagina[] apuntadores;
 
-
-
+      
         public Pagina(int n)
         {
             this.ordenArbol = n;
             this.MaximoLlaves = n * 2;
-            this.MaximoApuntadores = this.MaximoLlaves + 1;
+            this.MinimoApuntadores = this.MaximoLlaves + 1;
             this.info = new int[MaximoLlaves];
             for (int i = 0; i < info.Length; i++)
                 info[i] = default(int);
-            this.apuntadores = new Pagina[this.MaximoApuntadores];
+            this.apuntadores = new Pagina[this.MinimoApuntadores];
             for (int i = 0; i < apuntadores.Length; i++)
                 apuntadores[i] = null;
         }
@@ -72,7 +71,7 @@ namespace Trees_Library.B
 
         public int getM1()
         {
-            return MaximoApuntadores;
+            return MinimoApuntadores;
         }
 
 
