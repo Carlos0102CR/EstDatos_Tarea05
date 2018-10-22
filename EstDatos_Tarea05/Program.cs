@@ -13,6 +13,7 @@ namespace ArbolAVL
         {
             gestorAVL = new Gestor_AVL();
             gestorRojoNegro = new Gestor_Rojo_Negro();
+            gestorB = new Gestor_B();
 
             int[] datos = {1, 3, 5, 7, 9, 10, 13, 15, 17, 18};
 
