@@ -2,7 +2,7 @@
 
 namespace Trees_Library.Gestor
 {
-    public class Gestor_AVL
+    public class Gestor_AVL:IGestor
     {
         private Arbol_AVL arbol;
 

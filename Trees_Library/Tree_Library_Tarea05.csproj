@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -44,10 +44,12 @@
     <Compile Include="AVL\Arbol_AVL.cs" />
     <Compile Include="B+\Arbol_BMas.cs" />
     <Compile Include="B\Arbol_B.cs" />
-    <Compile Include="Gestor\Gestor.cs" />
-    <Compile Include="Node\Enum\Color.cs" />
-    <Compile Include="Node\Nodo.cs" />
-    <Compile Include="Node\Nodo_Rojo_Negro.cs" />
+    <Compile Include="Gestor\Gestor_AVL.cs" />
+    <Compile Include="Gestor\Gestor_Rojo_Negro.cs" />
+    <Compile Include="Gestor\IGestor.cs" />
+    <Compile Include="Nodo\Enum\Color.cs" />
+    <Compile Include="Nodo\Nodo.cs" />
+    <Compile Include="Nodo\Nodo_Rojo_Negro.cs" />
     <Compile Include="Rojo-Negro\Arbol_Rojo_Negro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

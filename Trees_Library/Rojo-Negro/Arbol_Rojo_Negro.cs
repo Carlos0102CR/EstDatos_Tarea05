@@ -13,34 +13,33 @@ namespace Trees_Library
         
         public Arbol_Rojo_Negro() { }
         
-        private void RotacionIzq(Nodo_Rojo_Negro X)
+        private void RotacionIzq(Nodo_Rojo_Negro x)
         {
-            Nodo_Rojo_Negro Y = X.derecho; // set Y
-            X.derecho = Y.izquierdo;//turn Y's left subtree into X's right subtree
+            Nodo_Rojo_Negro Y = x.derecho; // set Y
+            x.derecho = Y.izquierdo;//cambia el subarbol izq de y en el subarbol derecho de x
             if (Y.izquierdo != null)
             {
-                Y.izquierdo.padre = X;
+                Y.izquierdo.padre = x;
             }
             if (Y != null)
             {
-                Y.padre = X.padre;//link X's parent to Y
+                Y.padre = x.padre;//linkea el padre x a y
             }
-            if (X.padre == null)
+            if (x.padre == null)
             {
                 raiz = Y;
-            }
-            if (X == X.padre.izquierdo)
+            }else if (x == x.padre.izquierdo)
             {
-                X.padre.izquierdo = Y;
+                x.padre.izquierdo = Y;
             }
             else
             {
-                X.padre.derecho = Y;
+                x.padre.derecho = Y;
             }
-            Y.izquierdo = X; //put X on Y's left
-            if (X != null)
+            Y.izquierdo = x; //pone x en la izq de y
+            if (x != null)
             {
-                X.padre = Y;
+                x.padre = Y;
             }
  
         }
@@ -80,7 +79,7 @@ namespace Trees_Library
         {
             if (raiz == null)
             {
-                Console.WriteLine("Nothing in the tree!");
+                Console.WriteLine("El arbol esta vacio!");
                 return;
             }
             if (raiz != null)
@@ -172,7 +171,7 @@ namespace Trees_Library
             if (act != null)
             {
                 ImprimirInOrden(act.izquierdo);
-                Console.Write("({0}) ", act.dato);
+                Console.Write("({0})", act.dato);
                 ImprimirInOrden(act.derecho);
             }
         }

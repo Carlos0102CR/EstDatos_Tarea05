@@ -5,15 +5,27 @@ namespace ArbolAVL
 {
     public class Program
     {
-        private static Gestor_AVL gestor;
+        private static Gestor_AVL gestorAVL;
+        private static Gestor_Rojo_Negro gestorRojoNegro;
 
         public static void Main(string[] args)
         {
-            gestor = new Gestor_AVL();
+            gestorAVL = new Gestor_AVL();
+            gestorRojoNegro = new Gestor_Rojo_Negro();
+
+            int[] datos = {1, 3, 5, 7, 9, 10, 13, 15, 17, 18};
+
+            foreach (var data in datos)
+            {
+                gestorAVL.insertarArbol(data);
+                gestorRojoNegro.insertarArbol(data);
+            }
+            
 
             bool salir = false;
             do
             {
+                Console.WriteLine("\nArbol AVL y Rojo-Negro\n");
                 Console.WriteLine("\n1.Insertar" +
                 "\n2.Mostrar Arbol" +
                 "\n3.Salir");
@@ -43,12 +55,11 @@ namespace ArbolAVL
                     break;
 
                 case 2:
-                    Console.WriteLine("\n1.Pre-Orden" +
-                        "\n2.In-Orden"
-                        + "\n3.Post-Orden");
-
-                    int seleccion = seleccionarOpcion();
-                    mostrarArbol(seleccion);
+                    Console.WriteLine("Arbol AVL:");
+                    Console.WriteLine(gestorAVL.mostarArbolInOrden());
+                    Console.WriteLine("");
+                    Console.WriteLine("Arbol Rojo-Negro:");
+                    gestorRojoNegro.mostarArbolInOrden();
                     break;
 
                 case 3:
@@ -67,42 +78,15 @@ namespace ArbolAVL
         {
             Console.Write("Digite el valor: ");
             int.TryParse(Console.ReadLine(), out int valor);
+            gestorRojoNegro.insertarArbol(valor);
 
-            if (gestor.insertarArbol(valor))
+            if (gestorAVL.insertarArbol(valor))
             {
                 Console.WriteLine("Nodo insertado");
             }
             else
             {
                 Console.WriteLine("Elemento no insertado, el valor ya existe en el arbol");
-            }
-        }
-
-        public static void mostrarArbol(int opcion)
-        {
-            if (!gestor.verificarArbolVacio())
-            {
-                mostrarArbolBinario(opcion);
-            }
-            else
-            {
-                Console.WriteLine("El arbol esta vacio");
-            }
-        }
-
-        public static void mostrarArbolBinario(int opcion)
-        {
-            switch (opcion)
-            {
-                case 1:
-                    Console.WriteLine(gestor.mostarArbolPreOrden());
-                    break;
-                case 2:
-                    Console.WriteLine(gestor.mostarArbolInOrden());
-                    break;
-                case 3:
-                    Console.WriteLine(gestor.mostarArbolPostOrden());
-                    break;
             }
         }
     }
