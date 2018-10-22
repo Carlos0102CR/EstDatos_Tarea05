@@ -28,7 +28,10 @@ namespace ArbolAVL
                 Console.WriteLine("\nArbol AVL y Rojo-Negro\n");
                 Console.WriteLine("\n1.Insertar" +
                 "\n2.Mostrar Arbol" +
-                "\n3.Salir");
+                "\n3.Insertar en Arbol B" +
+                "\n4.Insertar en Arbol B+" +
+                "\n5.Mostrar ArbolB o ArbolB+" +
+                "\n6.Salir");
 
                 int opcionSeleccionada = seleccionarOpcion();
                 salir = ejecutarSeleccion(opcionSeleccionada);
@@ -61,8 +64,21 @@ namespace ArbolAVL
                     Console.WriteLine("Arbol Rojo-Negro:");
                     gestorRojoNegro.mostarArbolInOrden();
                     break;
-
                 case 3:
+                    InsertarEnArbolB();
+
+                    break;
+                case 4:
+                    InsertarEnArbolBM();
+
+                    break;
+                case 5:
+                    ImprimirArbolesB();
+
+                    break;
+             
+
+                case 6:
                     salir = true;
                     break;
 
@@ -72,6 +88,44 @@ namespace ArbolAVL
             }
 
             return salir;
+        }
+
+        private static void ImprimirArbolesB()
+        {
+            Console.WriteLine("Selccione una opcion valida");
+            Console.WriteLine("\n1.Arbol B" +
+                              "\n2.Arbol B+");
+            int.TryParse(Console.ReadLine(), out int valor);
+            switch (valor)
+            {
+                case 1:
+                    Console.WriteLine(gestor.ImprmirArboles(valor));
+                    break;
+                case 2:
+                    Console.WriteLine(gestor.ImprmirArboles(valor));
+                    break;
+
+                default:
+                    Console.WriteLine("Opcion invalida");
+                    break;
+            }
+
+        }
+
+        private static void InsertarEnArbolBM()
+        {
+            Console.Write("Digite el valor: ");
+            int.TryParse(Console.ReadLine(), out int valor);
+            gestor.InsertarEnArbolBM(valor);
+        }
+
+        private static void InsertarEnArbolB()
+        {
+
+            Console.Write("Digite el valor: ");
+            int.TryParse(Console.ReadLine(), out int valor);
+            gestor.InsertarEnArbolB(valor);
+
         }
 
         public static void insertarElemento()
