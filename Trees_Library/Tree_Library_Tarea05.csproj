@@ -42,10 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AVL\Arbol_AVL.cs" />
-    <Compile Include="B+\Arbol_BMas.cs" />
-    <Compile Include="B\Arbol_B.cs" />
+    <Compile Include="B+\ArbolBM.cs" />
+    <Compile Include="B\ArbolB.cs" />
+    <Compile Include="B\Cola.cs" />
+    <Compile Include="B\Comparable.cs" />
+    <Compile Include="B\Componente.cs" />
+    <Compile Include="B\ListaCD.cs" />
+    <Compile Include="B\Pagina.cs" />
+    <Compile Include="B\Pila.cs" />
     <Compile Include="Node\Enum\Color.cs" />
     <Compile Include="Node\Nodo.cs" />
+    <Compile Include="Node\NodoBtree.cs" />
     <Compile Include="Node\Nodo_Rojo_Negro.cs" />
     <Compile Include="Rojo-Negro\Arbol_Rojo_Negro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -15,7 +15,11 @@ namespace ArbolAVL
             {
                 Console.WriteLine("\n1.Insertar" +
                 "\n2.Mostrar Arbol" +
-                "\n3.Salir");
+                "\n3.Insertar en Arbol B" +
+                "\n4.Insertar en Arbol B+" +
+                "\n5.Mostrar Arbol B" +
+                "\n6.Mostrar Arbol B+" +
+                "\n7.Salir");
 
                 int opcionSeleccionada = seleccionarOpcion();
                 salir = ejecutarSeleccion(opcionSeleccionada);
@@ -49,8 +53,30 @@ namespace ArbolAVL
                     int seleccion = seleccionarOpcion();
                     mostrarArbol(seleccion);
                     break;
-
                 case 3:
+                    InsertarEnArbolB();
+
+                    break;
+                case 4:
+                    Console.WriteLine("\n1.Pre-Orden" +
+                        "\n2.In-Orden"
+                        + "\n3.Post-Orden");
+
+                    break;
+                case 5:
+                    Console.WriteLine("\n1.Pre-Orden" +
+                        "\n2.In-Orden"
+                        + "\n3.Post-Orden");
+
+                    break;
+                case 6:
+                    Console.WriteLine("\n1.Pre-Orden" +
+                        "\n2.In-Orden"
+                        + "\n3.Post-Orden");
+
+                    break;
+
+                case 7:
                     salir = true;
                     break;
 
@@ -60,6 +86,14 @@ namespace ArbolAVL
             }
 
             return salir;
+        }
+
+        private static void InsertarEnArbolB()
+        {
+
+            Console.Write("Digite el valor: ");
+            int.TryParse(Console.ReadLine(), out int valor);
+            
         }
 
         public static void insertarElemento()
