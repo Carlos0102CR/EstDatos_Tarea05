@@ -8,8 +8,13 @@ namespace Trees_Library.B
 {
   public  class ArbolB
     {
-        private int n;
-        private int m;//esto es orden
+        private int n;//esto es orden
+    
+        /**
+    * numero maximo de apuntadores
+    */
+        private int m;
+
         private int m1;
         private Pagina raiz;
 
@@ -716,12 +721,13 @@ namespace Trees_Library.B
         private String imprime(Pagina r, String msg)
         {
             int i = 0;
+            if (r.)
+            {
+                
+            }
             while (i <= r.getCont())
             {
-                //if (r.getApuntadores()[i]==null)
-                //{
-                //  Pagina
-                //}
+               
                 msg += r.ToString() + "  pagina = " + i + "   ES =" + r.getApuntadores()[i].ToString() + "\n";
                 if (!this.esHoja(r.getApuntadores()[i]))
                     msg += this.imprime(r.getApuntadores()[i], msg);

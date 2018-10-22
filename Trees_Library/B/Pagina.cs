@@ -28,7 +28,13 @@ namespace Trees_Library.B
          */
         private Pagina[] apuntadores;
 
-      
+        //public Pagina()
+        //{
+        //    var aux ;
+        //    for (int i = 0; i < apuntadores.Length; i++)
+        //        apuntadores[i] = aux;
+        //}
+
         public Pagina(int n)
         {
             this.ordenArbol = n;
