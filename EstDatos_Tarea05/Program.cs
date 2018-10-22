@@ -143,6 +143,7 @@ namespace ArbolAVL
             {
                 Console.WriteLine("Elemento no insertado, el valor ya existe en el arbol");
             }
+            
         }
     }
 }
