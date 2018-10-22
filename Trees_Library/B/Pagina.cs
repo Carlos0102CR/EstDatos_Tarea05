@@ -8,6 +8,7 @@ namespace Trees_Library.B
 {
    public class Pagina
     {
+
         private int ordenArbol;
         private int MaximoLlaves;
         private int MaximoApuntadores;

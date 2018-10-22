@@ -11,13 +11,10 @@ public class Gestor
     public Gestor()
     {
         arbol = new Arbol_AVL();
+        arbolB = new ArbolB();
+        arbolBM = new ArbolBM();
     }
 
-    public Gestor(int gradoArbol)
-    {
-        arbolB = new ArbolB(gradoArbol);
-        arbolBM = new ArbolBM(gradoArbol);
-    }
     
 
     public string mostarArbolPreOrden()
@@ -51,18 +48,38 @@ public class Gestor
     }
     public void InsertarEnArbolBM(int dato)
     {
-        arbolBM.insertar(dato);
+        arbolBM.insertarBMas(dato);
     }
 
     public string ImprmirArboles(int tipo)
     {
-        if (tipo != 1)
+        string  resultado= "";
+        if (tipo == 1)
         {
-            return arbolB.imprime();
+            if (arbolB.getRaiz()!=null)
+            {
+             resultado= arbolB.imprime();
+            }
+            else
+            {
+                resultado = "Arbol esta vacio";
+            }
+            
+           
         }
         else
         {
-            return arbolBM.imprime();
+            if (arbolBM.getRaiz()!=null)
+            {
+                resultado = arbolBM.imprime();
+            }
+            else
+            {
+                resultado = "Arbol B+ esta vacio";
+            }
+            
         }
+
+        return resultado;
     }
 }
