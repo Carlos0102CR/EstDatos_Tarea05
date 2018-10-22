@@ -29,6 +29,7 @@ namespace ArbolAVL
                 Console.WriteLine("\nArbol AVL y Rojo-Negro\n");
                 Console.WriteLine("\n1.Insertar" +
                 "\n2.Mostrar Arbol" +
+                "\nArbol B y B+" +
                 "\n3.Insertar en Arbol B" +
                 "\n4.Insertar en Arbol B+" +
                 "\n5.Mostrar ArbolB o ArbolB+" +
