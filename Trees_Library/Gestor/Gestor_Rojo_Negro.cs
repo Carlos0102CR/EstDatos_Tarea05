@@ -11,13 +11,13 @@ namespace Trees_Library.Gestor
 
         public string mostarArbolInOrden()
         {
-            arbol.ImprimirArbol();
+            arbol.imprimirArbol();
             return "fin";
         }
 
         public bool insertarArbol(int valor)
         {
-            arbol.Insertar(valor);
+            arbol.insertar(valor);
             return true;
         }
     }

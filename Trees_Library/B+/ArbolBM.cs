@@ -129,7 +129,7 @@ namespace Trees_Library.B_
         {
             int posicion, i, k;
             int temp = default(int);
-            Pagina p = null, q = null, r = null, t;
+            Pagina p = null, q = null, r = null;
             Pila<Componente> pila = new Pila<Componente>();
             Componente objeto = null;
             posicion = estaBMas(base.getRaiz(), x, pila);
@@ -512,20 +512,20 @@ namespace Trees_Library.B_
 
 
 
-        public ListaCD<int> getHojas()
+        new public ListaCD<int> getHojas()
         {
             return (base.getHojas());
         }
 
 
-        public bool esVacio()
+        new public bool esVacio()
         {
             return (base.esVacio());
         }
 
 
 
-        public ListaCD<int> inOrden()
+        new public ListaCD<int> inOrden()
         {
             return (base.inOrden());
         }
@@ -552,7 +552,7 @@ namespace Trees_Library.B_
         }
 
 
-        public int getAltura()
+        new public int getAltura()
         {
             return (base.getAltura());
         }
@@ -579,14 +579,14 @@ namespace Trees_Library.B_
         }
 
 
-        public String imprime()
+        new public String imprime()
         {
             return (base.imprime());
         }
 
 
 
-        public ArbolBM clonar()
+        new public ArbolBM clonar()
         {
             ArbolBM clon = new ArbolBM(this.getN());
             if (base.getRaiz() == null)

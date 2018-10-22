@@ -9,7 +9,7 @@ namespace Trees_Library
         
         public Arbol_Rojo_Negro() { }
         
-        private void RotacionIzq(Nodo_Rojo_Negro x)
+        private void rotacionIzq(Nodo_Rojo_Negro x)
         {
             Nodo_Rojo_Negro Y = x.derecho; // set Y
             x.derecho = Y.izquierdo;//cambia el subarbol izq de y en el subarbol derecho de x
@@ -39,7 +39,7 @@ namespace Trees_Library
             }
  
         }
-        private void RotacionDer(Nodo_Rojo_Negro Y)
+        private void rotacionDer(Nodo_Rojo_Negro Y)
         {
             Nodo_Rojo_Negro X = Y.izquierdo;
             Y.izquierdo = X.derecho;
@@ -71,7 +71,7 @@ namespace Trees_Library
             }
         }
         
-        public void ImprimirArbol()
+        public void imprimirArbol()
         {
             if (raiz == null)
             {
@@ -84,7 +84,7 @@ namespace Trees_Library
             }
         }
         
-        public Nodo_Rojo_Negro Buscar(int key)
+        public Nodo_Rojo_Negro buscar(int key)
         {
             bool isEncontrado = false;
             Nodo_Rojo_Negro temp = raiz;
@@ -121,7 +121,7 @@ namespace Trees_Library
             }
         }
         
-        public void Insertar(int item)
+        public void insertar(int item)
         {
             Nodo_Rojo_Negro nuevoItem = new Nodo_Rojo_Negro(item);
             if (raiz == null)
@@ -160,7 +160,7 @@ namespace Trees_Library
             nuevoItem.izquierdo = null;
             nuevoItem.derecho = null;
             nuevoItem.color = Color.Rojo;
-            ArreglarInsercion(nuevoItem);
+            arreglarInsercion(nuevoItem);
         }
         private void ImprimirInOrden(Nodo_Rojo_Negro act)
         {
@@ -171,7 +171,7 @@ namespace Trees_Library
                 ImprimirInOrden(act.derecho);
             }
         }
-        private void ArreglarInsercion(Nodo_Rojo_Negro item)
+        private void arreglarInsercion(Nodo_Rojo_Negro item)
         {
             while (item != raiz && item.padre.color == Color.Rojo)
             {
@@ -190,12 +190,12 @@ namespace Trees_Library
                         if (item == item.padre.derecho)
                         {
                             item = item.padre;
-                            RotacionIzq(item);
+                            rotacionIzq(item);
                         }
                         //Case 3: cambiar color y rotar
                     item.padre.color = Color.Negro;
                     item.padre.padre.color = Color.Rojo;
-                    RotacionDer(item.padre.padre);
+                    rotacionDer(item.padre.padre);
                     }
  
                 }
@@ -217,12 +217,12 @@ namespace Trees_Library
                         if (item == item.padre.izquierdo)
                         {
                             item = item.padre;
-                            RotacionDer(item);
+                            rotacionDer(item);
                         }
                         //Case 3
                     item.padre.color = Color.Negro;
                     item.padre.padre.color = Color.Rojo;
-                    RotacionIzq(item.padre.padre);
+                    rotacionIzq(item.padre.padre);
  
                     }
  
@@ -231,10 +231,10 @@ namespace Trees_Library
             }
         }
         
-        public void Borrar(int llave)
+        public void borrar(int llave)
         {
             
-            Nodo_Rojo_Negro item = Buscar(llave);
+            Nodo_Rojo_Negro item = buscar(llave);
             Nodo_Rojo_Negro X = null;
             Nodo_Rojo_Negro Y = null;
  
@@ -249,7 +249,7 @@ namespace Trees_Library
             }
             else
             {
-                Y = SucesorArbol(item);
+                Y = sucesorArbol(item);
             }
             if (Y.izquierdo != null)
             {
@@ -281,12 +281,12 @@ namespace Trees_Library
             }
             if (Y.color == Color.Negro)
             {
-                ArreglarBorrado(X);
+                arreglarBorrado(X);
             }
  
         }
         
-        private void ArreglarBorrado(Nodo_Rojo_Negro X)
+        private void arreglarBorrado(Nodo_Rojo_Negro X)
         {
  
             while (X!= null && X != raiz && X.color == Color.Negro)
@@ -298,7 +298,7 @@ namespace Trees_Library
                     {
                         W.color = Color.Negro; //case 1
                         X.padre.color = Color.Rojo; //case 1
-                        RotacionIzq(X.padre); //case 1
+                        rotacionIzq(X.padre); //case 1
                         W = X.padre.derecho; //case 1
                     }
                     if (W.izquierdo.color == Color.Negro && W.derecho.color == Color.Negro)
@@ -310,13 +310,13 @@ namespace Trees_Library
                     {
                         W.izquierdo.color = Color.Negro; //case 3
                         W.color = Color.Rojo; //case 3
-                        RotacionDer(W); //case 3
+                        rotacionDer(W); //case 3
                         W = X.padre.derecho; //case 3
                     }
                     W.color = X.padre.color; //case 4
                     X.padre.color = Color.Negro; //case 4
                     W.derecho.color = Color.Negro; //case 4
-                    RotacionIzq(X.padre); //case 4
+                    rotacionIzq(X.padre); //case 4
                     X = raiz; //case 4
                 }
                 else
@@ -326,7 +326,7 @@ namespace Trees_Library
                     {
                         W.color = Color.Negro;
                         X.padre.color = Color.Rojo;
-                        RotacionDer(X.padre);
+                        rotacionDer(X.padre);
                         W = X.padre.izquierdo;
                     }
                     if (W.derecho.color == Color.Negro && W.izquierdo.color == Color.Negro)
@@ -338,20 +338,20 @@ namespace Trees_Library
                     {
                         W.derecho.color = Color.Negro;
                         W.color = Color.Rojo;
-                        RotacionIzq(W);
+                        rotacionIzq(W);
                         W = X.padre.izquierdo;
                     }
                     W.color = X.padre.color;
                     X.padre.color = Color.Negro;
                     W.izquierdo.color = Color.Negro;
-                    RotacionDer(X.padre);
+                    rotacionDer(X.padre);
                     X = raiz;
                 }
             }
             if(X != null)
             X.color = Color.Negro;
         }
-        private Nodo_Rojo_Negro Minimo(Nodo_Rojo_Negro X)
+        private Nodo_Rojo_Negro minimo(Nodo_Rojo_Negro X)
         {
             while (X.izquierdo.izquierdo != null)
             {
@@ -363,11 +363,11 @@ namespace Trees_Library
             }
             return X;
         }
-        private Nodo_Rojo_Negro SucesorArbol(Nodo_Rojo_Negro X)
+        private Nodo_Rojo_Negro sucesorArbol(Nodo_Rojo_Negro X)
         {
             if (X.izquierdo != null)
             {
-                return Minimo(X);
+                return minimo(X);
             }
             else
             {
