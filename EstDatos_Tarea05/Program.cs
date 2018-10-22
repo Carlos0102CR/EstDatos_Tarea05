@@ -7,6 +7,7 @@ namespace ArbolAVL
     {
         private static Gestor_AVL gestorAVL;
         private static Gestor_Rojo_Negro gestorRojoNegro;
+        private static Gestor_B gestorB;
 
         public static void Main(string[] args)
         {
@@ -99,10 +100,10 @@ namespace ArbolAVL
             switch (valor)
             {
                 case 1:
-                    Console.WriteLine(gestor.ImprmirArboles(valor));
+                    Console.WriteLine(gestorB.ImprmirArboles(valor));
                     break;
                 case 2:
-                    Console.WriteLine(gestor.ImprmirArboles(valor));
+                    Console.WriteLine(gestorB.ImprmirArboles(valor));
                     break;
 
                 default:
@@ -116,7 +117,7 @@ namespace ArbolAVL
         {
             Console.Write("Digite el valor: ");
             int.TryParse(Console.ReadLine(), out int valor);
-            gestor.InsertarEnArbolBM(valor);
+            gestorB.InsertarEnArbolBM(valor);
         }
 
         private static void InsertarEnArbolB()
@@ -124,7 +125,7 @@ namespace ArbolAVL
 
             Console.Write("Digite el valor: ");
             int.TryParse(Console.ReadLine(), out int valor);
-            gestor.InsertarEnArbolB(valor);
+            gestorB.InsertarEnArbolB(valor);
 
         }
 
