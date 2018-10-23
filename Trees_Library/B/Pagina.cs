@@ -30,7 +30,7 @@ namespace Trees_Library.B
 
         //public Pagina()
         //{
-        //    var aux ;
+          
         //    for (int i = 0; i < apuntadores.Length; i++)
         //        apuntadores[i] = aux;
         //}

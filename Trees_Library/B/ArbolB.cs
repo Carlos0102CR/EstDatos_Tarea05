@@ -721,16 +721,29 @@ namespace Trees_Library.B
         private String imprime(Pagina r, String msg)
         {
             int i = 0;
-            if (r.)
-            {
-                
-            }
+            
             while (i <= r.getCont())
             {
+                if (r.getApuntadores()[i]==null)
+                {
+
+                    msg += r.ToString() +"" + "\n";
+                    if (i==0)
+                    {
+                        break;
+                    }
+                   
+                }
+                else
+                {
+
+                    msg += r.ToString() + "  pagina = " + i + "   ES =" + r.getApuntadores()[i].ToString() + "\n";
+                    if (!this.esHoja(r.getApuntadores()[i]))
+                        msg += this.imprime(r.getApuntadores()[i], msg);
+                }
                
-                msg += r.ToString() + "  pagina = " + i + "   ES =" + r.getApuntadores()[i].ToString() + "\n";
-                if (!this.esHoja(r.getApuntadores()[i]))
-                    msg += this.imprime(r.getApuntadores()[i], msg);
+                
+
                 i++;
             }
             return msg;
